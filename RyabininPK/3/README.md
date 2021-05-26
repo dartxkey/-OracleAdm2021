@@ -5,6 +5,7 @@ SQL1 > UPDATE sample SET value 3 WHERE id=1;
 1 row updated.
 ```
 Второй клиент зависает
+
 ![](img/1.png)
 
 ## 1. Зафиксировать/откатить изменения
@@ -15,9 +16,13 @@ SQL1> ROLLBACK;
 ```
 ## 2. Убить сессию
 Узнаем свой SID и SID второй сессии. Убиваем вторую сессию:
+
 ![](img/2.png)
+
 Вторая сессия получает сообщение:
+
 ![](img/3.png)
+
 # Создать deadlock на таблице
 ```SQL
 -- Создаем deadlock
@@ -30,7 +35,9 @@ SQL1> UPDATE sample SET value=2 WHERE id=2;
 SQL2> UPDATE sample SET value=2 WHERE id=1;
 -- зависание
 ```
+
 ![](img/4.png)
+
 [alert.log](alert.log)
 # Управление сегментами отмены
 
@@ -40,6 +47,7 @@ SQL2> UPDATE sample SET value=2 WHERE id=1;
 ## 2. С использованием 1) вычислить размер табличного пространства отмены для поддержки 1-часового undo retention interval.
 
 ![](img/6.png)
+
 Undo Size = Optimal Undo Retention * DB_BLOCK_SIZE * UNDO_BLOCK_REP_ESC = 60*60 * 16384 * 1.86 = 104 Мб
 
 ## 3.  Продемонстрировать настроенные параметры для UNDO, аттрибуты табличного пространства для UNDO, установленные по-умолчанию для вашей системы
