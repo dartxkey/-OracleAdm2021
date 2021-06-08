@@ -84,6 +84,23 @@ end;
 SELECT * FROM dba_fga_audit_trail;
 ```
 5. Отчет по всем операциям в журналах аудита по выбранному пользователю за период. (sql запрос с параметром: дней истории от тек.даты)
+Включаем вывод DBMS_OUTPUT:
 ```sql
-SELECT TO_CHAR(timestamp, 'HH24:MI:SS DD.MM.YYYY') time_stamp, db_user, os_user, object_schema, object_name, sql_text FROM dba_fga_audit_trail ORDER BY timestamp;
+SET SERVEROUTPUT ON;
+```
+```sql
+CREATE OR REPLACE PROCEDURE GET_AUDIT_FOR_USER(USER IN VARCHAR2, DAYS_COUNT IN NUMBER) AS
+  BEGIN
+    FOR row IN (
+    SELECT *
+    FROM DBA_COMMON_AUDIT_TRAIL
+    WHERE DB_USER = GET_AUDIT_FOR_USER.USER AND EXTENDED_TIMESTAMP > (
+      SELECT (SYSDATE - GET_AUDIT_FOR_USER.DAYS_COUNT)
+      FROM dual
+    ))
+    LOOP
+      DBMS_OUTPUT.PUT_LINE('' || row.DB_USER || ' - ' || ROW.STATEMENT_TYPE || ' - ' || ROW.EXTENDED_TIMESTAMP);
+    END LOOP;
+  END GET_AUDIT_FOR_USER;
+/
 ```
