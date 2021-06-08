@@ -1,5 +1,5 @@
 1. Создать отдельное табличное пространство UNDOTS_G (AUM)
-a) Установить гарантированный UNDO_RETENTION 15 минут.
+- a) Установить гарантированный UNDO_RETENTION 15 минут.
 ```sql
 CREATE UNDO TABLESPACE UNDOTS_G DATAFILE 'undots_ga.dbf' SIZE 10M AUTOEXTEND ON RETENTION GUARANTEE;
 ALTER SYSTEM SET UNDO_RETENTION = 900 SCOPE = BOTH;
@@ -111,7 +111,8 @@ Current log sequence	       88
 /home/oracle/app/oracle/oradata/pana2/control01.ctl
 ```
 4. Мультиплексировать Control Files До 4 экземпляров в разных локациях.
-Скопируем Control Files из директории /home/oracle/app/oracle/oradata/pana2/ в другие локации. После чего в spfile добавим пути до копий:
+
+- Скопируем Control Files из директории /home/oracle/app/oracle/oradata/pana2/ в другие локации. После чего в spfile добавим пути до копий:
 ```sql
 control_files=("/home/oracle/app/oracle/oradata/pana2/control01.ctl", 
 "/home/oracle/app/oracle/oradata/pana2/control02.ctl",
