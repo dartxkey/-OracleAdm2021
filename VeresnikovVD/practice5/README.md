@@ -10,11 +10,20 @@ audit_trail            string            DB, EXTENDED
 2. Для пользователя "владелец приложения" из Lab2 аудировать:
 а) все действия по созданию/изменению триггеров и представлений БД. Каждое изменение - отдельной записью.
 ```sql
-AUDIT CREATE ANY TRIGGER BY APP_OWNER BY ACCESS;
-AUDIT ALTER ANY TRIGGER BY APP_OWNER BY ACCESS;
-AUDIT DROP ANY TRIGGER BY APP_OWNER BY ACCESS;
-AUDIT CREATE ANY VIEW BY APP_OWNER BY ACCESS;
-AUDIT DROP ANY VIEW BY APP_OWNER BY ACCESS;
+SQL> AUDIT CREATE ANY TRIGGER BY APP_OWNER BY ACCESS;
+Audit succeeded.
+
+SQL> AUDIT ALTER ANY TRIGGER BY APP_OWNER BY ACCESS; 
+Audit succeeded.
+
+SQL> AUDIT DROP ANY TRIGGER BY APP_OWNER BY ACCESS; 
+Audit succeeded.
+
+SQL> AUDIT CREATE ANY VIEW BY APP_OWNER BY ACCESS;
+Audit succeeded.
+
+SQL> AUDIT DROP ANY VIEW BY APP_OWNER BY ACCESS; 
+Audit succeeded.
 ```
 
 б) фиксировать только неудачные попытки удаления из таблиц вашим пользователем. Одна запись на сессию.
@@ -72,7 +81,7 @@ end;
 ```
 в) продеменострировать содержимое журнала аудита детального аудита.
 ```sql
-SELECT * FROM DBA_FGA_AUDIT_TRAIL;
+SELECT * FROM dba_fga_audit_trail;
 ```
 5. Отчет по всем операциям в журналах аудита по выбранному пользователю за период. (sql запрос с параметром: дней истории от тек.даты)
 ```sql
