@@ -3,6 +3,7 @@
 [Скрипты](scripts.zip)
 
 4. Вывод из словаря данных V$:
+![Вывод V](https://user-images.githubusercontent.com/70812795/121181911-f3198280-c87b-11eb-82c2-7bd8087628a1.png)
 
 ![Вывод V$](https://i.imgur.com/9KJlzPO.png)
 
