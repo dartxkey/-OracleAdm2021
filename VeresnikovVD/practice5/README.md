@@ -72,5 +72,9 @@ end;
 ```
 в) продеменострировать содержимое журнала аудита детального аудита.
 ```sql
+SELECT * FROM DBA_FGA_AUDIT_TRAIL;
+```
+5. Отчет по всем операциям в журналах аудита по выбранному пользователю за период. (sql запрос с параметром: дней истории от тек.даты)
+```sql
 SELECT TO_CHAR(timestamp, 'HH24:MI:SS DD.MM.YYYY') time_stamp, db_user, os_user, object_schema, object_name, sql_text FROM dba_fga_audit_trail ORDER BY timestamp;
 ```
