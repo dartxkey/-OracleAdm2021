@@ -5,7 +5,7 @@
 4. Вывод из словаря данных V$:
 ![Вывод V](https://user-images.githubusercontent.com/70812795/121181911-f3198280-c87b-11eb-82c2-7bd8087628a1.png)
 
-![Вывод V$](https://i.imgur.com/9KJlzPO.png)
+![image](https://user-images.githubusercontent.com/70812795/121182028-180df580-c87c-11eb-9cad-97cea49add33.png)
 
 5. Создаем SPFILE 
 
@@ -16,9 +16,7 @@
 SQL> ALTER SYSTEM SET open_cursors=400 SCOPE=MEMORY;
 ```
 
-![Вывод V$](https://i.imgur.com/6Hm5ohR.png)
-
-![Cat init.ora](https://i.imgur.com/EI6MxPN.png)
+![image](https://user-images.githubusercontent.com/70812795/121182450-881c7b80-c87c-11eb-8818-bc0f42c8a1ae.png)
 
 7. Варианты монтирования и остановки БД:
 ```SQL
@@ -43,7 +41,7 @@ SQL> RECOVER DATABASE;
 
 8. В SUSPEND и обратно
 
-![Suspend](https://i.imgur.com/CyV2Mux.png)
+![Suspend](https://user-images.githubusercontent.com/70812795/121182902-f3fee400-c87c-11eb-9b05-a57c9da8da9c.png)
 
 9. Изменение параметров
 ```SQL
@@ -53,11 +51,11 @@ union all
 select value from v$spparameter where name='optimizer_mode';
 ```
 
-![optimizer](https://i.imgur.com/YQJmRR6.png)
+![image](https://user-images.githubusercontent.com/70812795/121183271-53f58a80-c87d-11eb-845b-41dbc9095047.png)
 
 Поскольку значение измененного параметра не было сохранено в spfile, они действительны только для текущего экземпляра.
 
-10. и 11. Создать профили, создать пользователей и применить к ним профили:
+10 - 12. Создать профили, создать пользователей и применить к ним профили:
 ```SQL
 /* a.	владелец приложения: без квоты на создание объектов, без ограничений по времени сессии,  количеству сессий, роли для просмотра словаря данных и динамических представлений */
 SQL> CREATE PROFILE app_owner_prof LIMIT SESSIONS_PER_USER UNLIMITED CONNECT_TIME UNLIMITED;
@@ -77,7 +75,9 @@ SQL> ALTER USER LIMITED QUOTA 50M ON USERS;
 
 12. продемонстрировать пользователя в dba_users, выборка параметров профиля для пользователя
 
-![Users](https://i.imgur.com/jMwlyLS.png)
+![image](https://user-images.githubusercontent.com/70812795/121183605-b2bb0400-c87d-11eb-909f-f29cff35a2ac.png)
+
+![image](https://user-images.githubusercontent.com/70812795/121183682-c6666a80-c87d-11eb-9e36-14aca2ddbf16.png)
 
 13. Установить профиль b) как значение По-умолчанию для всех вновь создаваемых пользователей
 ```SQL
